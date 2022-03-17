@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", function(){       // DOMContenLoad
         event.preventDefault();
         addBook();
     });
+
+    if(isStorageExist()){
+        loadDataFromStorage();
+    }
 });
 
 function addBook(){
@@ -33,6 +37,7 @@ function addBook(){
     books.push(bookObject);
 
     document.dispatchEvent(new Event(RENDER_EVENT));
+    saveData();
 }
 
 function generateId(){
@@ -88,7 +93,7 @@ function makeBook(bookObject){
         undoButton.innerText = "Belum selesai dibaca";
         undoButton.classList.add("green");
         undoButton.addEventListener("click", function(){
-            addTastToIncompleted(bookObject.id);
+            addTaskToIncompleted(bookObject.id);
         });
 
         const removeButtton = document.createElement("button");
@@ -105,7 +110,7 @@ function makeBook(bookObject){
         doneButton.innerText = "Selesai dibaca";
         doneButton.classList.add("green");
         doneButton.addEventListener("click", function(){
-            addTasktToCompleted(bookObject.id);
+            addTaskToCompleted(bookObject.id);
         });
 
         const removeButtton = document.createElement("button");
@@ -128,7 +133,7 @@ function makeBook(bookObject){
 }
 
 
-function addTasktToCompleted(bookId){
+function addTaskToCompleted(bookId){
     const bookTarget = findBook(bookId);
     if(bookTarget == null){
         return;
@@ -136,6 +141,7 @@ function addTasktToCompleted(bookId){
 
     bookTarget.isComplete = true;
     document.dispatchEvent(new Event(RENDER_EVENT));
+    saveData();
 }
 
 function findBook(bookId){
@@ -148,7 +154,7 @@ function findBook(bookId){
 }
 
 
-function addTastToIncompleted(bookId){
+function addTaskToIncompleted(bookId){
     const bookTarget = findBook(bookId);
     if(bookTarget == null){
         return;
@@ -156,6 +162,7 @@ function addTastToIncompleted(bookId){
 
     bookTarget.isComplete = false;
     document.dispatchEvent(new Event(RENDER_EVENT));
+    saveData();
 }
 
 function removeTaskFromCompleted(bookId){
@@ -164,6 +171,7 @@ function removeTaskFromCompleted(bookId){
     books.splice(bookTarget, 1);
 
     document.dispatchEvent(new Event(RENDER_EVENT));
+    saveData();
 
     // Custom Dialog Script.
     const customDialog = document.getElementById("modal-container");
@@ -206,4 +214,41 @@ function customDialog(){
     modalContainer.setAttribute("id", "modal-container");
 
     return modalContainer;
+}
+
+
+function saveData(){
+    if(isStorageExist()){
+        const parsed = JSON.stringify(books);
+        localStorage.setItem(STORAGE_KEY, parsed);
+        document.dispatchEvent(new Event(SAVED_EVENT))
+    }
+}
+
+const STORAGE_KEY = "BOOKSHELF_APP";
+const SAVED_EVENT = "saved-book";
+
+function isStorageExist(){
+    if(typeof(Storage) === "undefined"){
+        alert("Browser Anda Belum Mendukung Fitur WebStorage");
+        return false;
+    }
+    return true;
+}
+
+document.addEventListener(SAVED_EVENT, function(){
+    console.info(localStorage.getItem(STORAGE_KEY));
+});
+
+function loadDataFromStorage(){
+    serializedData = localStorage.getItem(STORAGE_KEY);
+    let data = JSON.parse(serializedData);
+
+    if(data !== null){
+        for (book of data) {
+            books.push(book);
+        }
+    }
+
+    document.dispatchEvent(new Event(RENDER_EVENT));
 }
