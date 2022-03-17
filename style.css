@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@200&family=Quicksand:wght@400;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body, input, button {
+    font-family: 'Open Sans', sans-serif;
+}
+
+input, button {
+    font-size: 16px;
+}
+
+.head_bar {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(8, 158, 196);
+    color: white;
+    background-color: rgb(0, 145, 182);
+}
+
+.head_bar img{
+    
+}
+
+main {
+    max-width: 800px;
+    width: 80%;
+    margin: 0 auto;
+    padding: 16px;
+
+}
+
+.input_section {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border: 1px solid rgb(146, 146, 146);
+    border-radius: 14px;
+}
+
+.input_section:hover{
+    box-shadow: 0.5px 4px 16px rgba(136, 136, 136, 0.84);
+    transition: all .3s ease-in-out;
+}
+.input_section > h2 {
+    text-align: center;
+    color: rgb(8, 158, 196);
+}
+
+.input_section > form > .input {
+    margin: 8px 0;
+    padding: 0 24px;
+}
+
+.input_section > form > button {
+    background-color: rgb(0, 145, 182);
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.input_section > form > button > span {
+    font-weight: bold;
+}
+
+.input_section > form > .input > input {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+
+
+.input_section > form > .input > label {
+    color: rgb(8, 158, 196);
+    font-weight: bold;
+}
+
+.input_section > form > .input_inline {
+    margin: 12px 0;
+    display: flex;
+    align-items: center;
+}
+
+.input_section > form > .input_inline > label {
+    color: rgb(8, 158, 196);
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.search_section {
+    margin: 16px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid rgb(146, 146, 146);
+    border-radius: 14px;
+}
+
+.search_section:hover{
+    box-shadow: 0.5px 4px 16px rgba(136, 136, 136, 0.84);
+    transition: all .3s ease-in-out;
+}
+
+.search_section > h2 {
+    color: rgb(8, 158, 196);
+}
+
+.search_section > form {
+    padding: 16px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr 0.5fr;
+    grid-gap: 10px;
+}
+
+.search_section > form > label {
+    display: flex;
+    align-items: center;
+}
+
+.search_section > form > input {
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.search_section > form > button {
+    background-color: rgb(8, 158, 196);
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.book_shelf {
+    margin: 16px 0 0 0;
+    border: 1px solid rgb(146, 146, 146);
+    padding: 16px;
+    border-radius: 14px;
+}
+
+.book_shelf:hover{
+    box-shadow: 0.5px 4px 16px rgba(136, 136, 136, 0.84);
+    transition: all .3s ease-in-out;
+}
+
+.book_shelf > h2 {
+    color: rgb(8, 158, 196);
+}
+
+.book_shelf > .book_list {
+    padding: 16px;
+}
+
+.book_shelf > .book_list > .book_item {
+    padding: 8px 16px 16px 16px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.book_shelf > .book_list > .book_item > h3, p {
+    margin: 8px 0;
+}
+
+.book_shelf > .book_list > .book_item > .action > button {
+    border: 0;
+    padding: 5px;
+    margin: 0 5px 0 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.book_shelf > .book_list > .book_item > .action > .green {
+    background-color: darkgreen;
+    color: white;
+}
+
+.book_shelf > .book_list > .book_item > .action > .red {
+    background-color: darkred;
+    color: white;
+}
+
+
+
+/* Styling for Custom Dialog. */
+.modal-container{
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    margin: 0;
+}
+
+.modal-container button{
+    background-color: rgb(0, 121, 151);
+    border: 0;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-size: 14px;
+    padding: 10px 25px;
+    cursor: pointer;
+}
+
+.modal-container{
+    background-color: rgba(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    display: none;
+}
+
+.modal-container.show{
+    display: flex;
+    opacity: 1;
+}
+
+.modal-container .modal{
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 30px 50px;
+    width: 600px;
+    max-width: 100%;
+    text-align: center;
+}
+
+.modal h1{
+    margin: 0;
+}
+
+.modal p{
+    font-size: 20px;
+    opacity: 0.7;
+}
+/*End Styling for Custom Dialog. */
